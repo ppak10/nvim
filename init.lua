@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.autocmds")
 
 vim.keymap.set("i", "jj", "<ESC>")
 
@@ -16,9 +17,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- column bar at 80
 vim.opt.colorcolumn = "80"
 
+-- linenumber
 vim.opt.number = true
+
+vim.cmd[[colorscheme tokyonight-night]]
 
 -- Simple toggle between day and night
 function ToggleTokyonightLightDark()
