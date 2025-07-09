@@ -1,7 +1,6 @@
 require("config.lazy")
 require("config.autocmds")
-
-vim.keymap.set("i", "jj", "<ESC>")
+require("keymaps")
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
@@ -22,22 +21,6 @@ vim.opt.colorcolumn = "80"
 
 -- linenumber
 vim.opt.number = true
-
-vim.cmd[[colorscheme tokyonight-night]]
-
--- Simple toggle between day and night
-function ToggleTokyonightLightDark()
-  local current = vim.g.colors_name
-
-  if current == "tokyonight-day" then
-    vim.cmd("colorscheme tokyonight-night")
-  else
-    vim.cmd("colorscheme tokyonight-day")
-  end
-end
-
--- Keybinding: <leader>td toggles light/dark
-vim.keymap.set("n", "<leader>td", ToggleTokyonightLightDark, { desc = "Toggle TokyoNight Light/Dark" })
 
 
 vim.opt.termguicolors = true
