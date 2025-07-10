@@ -8,14 +8,33 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     config = function()
+      -- Setup Mason
       require("mason").setup()
+
+      -- Setup Mason LSPConfig
       require("mason-lspconfig").setup({
-        ensure_installed = { "pyright" },
+        ensure_installed = {
+          "pyright",
+          "ltex", -- add ltex to ensure it's installed
+        },
       })
 
-      -- Enable Pyright
+      -- Setup language servers
       local lspconfig = require("lspconfig")
+
+      -- Python
       lspconfig.pyright.setup({})
+
+      -- LaTeX / Markdown grammar checker
+      -- lspconfig.ltex.setup({
+      --   settings = {
+      --     ltex = {
+      --       language = "en-US",
+      --       enabled = { "latex", "tex", "markdown" },
+      --     },
+      --   },
+      --   filetypes = { "tex", "latex", "markdown", "bib" },
+      -- })
     end,
   },
 
