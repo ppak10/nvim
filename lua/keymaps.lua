@@ -1,19 +1,31 @@
 -- Keybinding: <leader>td toggles light/dark
 
-vim.cmd[[colorscheme tokyonight-night]]
+-- vim.cmd.colorscheme("cyberdream")
+-- vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
 -- Simple toggle between day and night
+vim.cmd[[colorscheme tokyonight-day]]
 function ToggleTokyonightLightDark()
   local current = vim.g.colors_name
 
   if current == "tokyonight-day" then
-    vim.cmd("colorscheme tokyonight-night")
+    vim.cmd("colorscheme tokyonight-storm")
+    require('lualine').setup {
+      options = {
+        theme = 'tokyostorm'
+      }
+    }
   else
     vim.cmd("colorscheme tokyonight-day")
+    require('lualine').setup {
+      options = {
+        theme = 'tokyoday'
+      }
+    }
   end
 end
 
-vim.keymap.set("n", "<leader>td", ToggleTokyonightLightDark, { desc = "Toggle TokyoNight Light/Dark" })
+vim.keymap.set("n", "<leader>tt", ToggleTokyonightLightDark, { desc = "Toggle Light/Dark" })
 
 vim.keymap.set("i", "jj", "<ESC>")
 
