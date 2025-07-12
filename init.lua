@@ -29,6 +29,37 @@ require("nvim-tree").setup({
   },
 })
 
+require('telescope').setup({
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules/.*",
+      "__pycache__/.*",
+      "%.py[cod]",
+      "%.venv/.*",
+      "venv/.*",
+      "%.git/.*",
+      "%.DS_Store",
+      "%.vscode/.*",
+      "%.idea/.*",
+      "build/.*",
+      "dist/.*",
+      "target/.*",
+      "%.log",
+      "logs/.*",
+      "tmp/.*",
+      "%.tmp",
+      "vendor/.*",
+      "%.coverage",
+      "%.pytest_cache/.*",
+      "%.mypy_cache/.*",
+      "%.tox/.*",
+      "*%.swp",
+      "*%.swo",
+      "*~"
+    }
+  }
+})
+
 -- require("lualine").setup({
 --     -- ... other config
 --     options = {
