@@ -15,6 +15,9 @@ vim.g.loaded_netrwPlugin = 1
 
 -- OR setup with some options
 require("nvim-tree").setup({
+  filters = {
+    dotfiles = true,
+  },
   sort = {
     sorter = "case_sensitive",
   },
@@ -31,6 +34,7 @@ require("nvim-tree").setup({
 
 require('telescope').setup({
   defaults = {
+    hidden = true,
     file_ignore_patterns = {
       "node_modules/.*",
       "__pycache__/.*",
@@ -56,6 +60,11 @@ require('telescope').setup({
       "*%.swp",
       "*%.swo",
       "*~"
+    }
+  },
+  pickers = {
+    find_files = {
+      hidden = true
     }
   }
 })

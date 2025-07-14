@@ -14,16 +14,14 @@ return {
       -- Setup Mason LSPConfig
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "pyright",
+          "basedpyright",
           "ltex", -- add ltex to ensure it's installed
         },
       })
 
+      require('lspconfig').basedpyright.setup({})
       -- Setup language servers
       local lspconfig = require("lspconfig")
-
-      -- Python
-      lspconfig.pyright.setup({})
 
       -- LaTeX / Markdown grammar checker
       -- lspconfig.ltex.setup({
