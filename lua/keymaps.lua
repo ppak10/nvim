@@ -5,22 +5,19 @@
 
 -- Simple toggle between day and night
 vim.cmd[[colorscheme tokyonight-day]]
+
 function ToggleTokyonightLightDark()
   local current = vim.g.colors_name
 
   if current == "tokyonight-day" then
     vim.cmd("colorscheme tokyonight-storm")
     require('lualine').setup {
-      options = {
-        theme = 'tokyostorm'
-      }
+      options = { theme = 'tokyonight-storm' }
     }
   else
     vim.cmd("colorscheme tokyonight-day")
     require('lualine').setup {
-      options = {
-        theme = 'tokyoday'
-      }
+      options = { theme = 'tokyonight-day' }
     }
   end
 end
