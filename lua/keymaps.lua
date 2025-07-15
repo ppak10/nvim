@@ -39,9 +39,18 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous diagnosti
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
 
+--nvim-tree
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ft', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+
 -- Reload Configs
 vim.keymap.set("n", "<leader>rr", function()
-  vim.cmd("luafile $MYVIMRC")
-  print("✅ Reloaded init.lua")
-end, { desc = "Reload Neovim config" })
+  for name,_ in pairs(package.loaded) do
+    if name:match("^keymaps") or name:match("^plugins") then
+      package.loaded[name] = nil
+    end
+  end
+  dofile(vim.fn.stdpath("config") .. "/init.lua")
+  print("✅ Reloaded all configs")
+end, { desc = "Reload everything" })
 
