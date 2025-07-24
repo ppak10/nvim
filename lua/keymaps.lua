@@ -50,6 +50,22 @@ vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = t
 vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ft', '<cmd>Neotree focus filesystem left<CR>', { noremap = true, silent = true })
 
+-- Require ToggleTerm and set keybinding
+local Terminal = require("toggleterm.terminal").Terminal
+local float_term = Terminal:new({ direction = "float", hidden = true })
+
+vim.keymap.set("n", "<leader>tf", function()
+  float_term:toggle()
+end, { desc = "Toggle floating terminal" })
+
+-- Horizontal terminal
+vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Horizontal terminal" })
+
+-- Vertical terminal
+vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Vertical terminal" })
+
+vim.keymap.set('t', 'jj', [[<C-\><C-n>]], { noremap = true, silent = true })
+
 -- Reload Configs
 vim.keymap.set("n", "<leader>rr", function()
   for name,_ in pairs(package.loaded) do
