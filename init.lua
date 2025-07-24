@@ -14,22 +14,44 @@ vim.g.loaded_netrwPlugin = 1
 -- vim.opt.termguicolors = true
 
 -- OR setup with some options
-require("nvim-tree").setup({
-  filters = {
-    dotfiles = true,
+-- require("nvim-tree").setup({
+--   filters = {
+--     dotfiles = true,
+--   },
+--   sort = {
+--     sorter = "case_sensitive",
+--   },
+--   view = {
+--     width = 30,
+--   },
+--   renderer = {
+--     group_empty = true,
+--   },
+--   filters = {
+--     dotfiles = true,
+--   },
+-- })
+
+require("neo-tree").setup({
+  filesystem = {
+    filtered_items = {
+      visible = true,         -- show hidden files by default
+      hide_dotfiles = true,   -- or false, depending on your preference
+      hide_gitignored = true,
+    },
+    follow_current_file = {
+      enabled = true,         -- auto-focus file in tree
+    },
   },
-  sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
+  window = {
     width = 30,
+    mappings = {
+      ["<space>"] = "none",  -- override default space action
+    },
   },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
+  sort_case_insensitive = false,
+  enable_git_status = true,
+  enable_diagnostics = true,
 })
 
 require('telescope').setup({
