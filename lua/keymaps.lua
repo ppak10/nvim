@@ -4,7 +4,7 @@
 -- vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
 -- Simple toggle between day and night
-vim.cmd[[colorscheme tokyonight-day]]
+vim.cmd[[colorscheme tokyonight-storm]]
 
 function ToggleTokyonightLightDark()
   local current = vim.g.colors_name
