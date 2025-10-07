@@ -15,16 +15,15 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "basedpyright",
-          "ltex", -- add ltex to ensure it's installed
+          "ltex", -- grammar/spell checker
         },
       })
 
-      require('lspconfig').basedpyright.setup({})
-      -- Setup language servers
-      local lspconfig = require("lspconfig")
+      -- Modern Neovim 0.11+ LSP setup
+      vim.lsp.config("basedpyright", {})
 
-      -- LaTeX / Markdown grammar checker
-      -- lspconfig.ltex.setup({
+      -- Optional: LaTeX / Markdown grammar checker (uncomment if needed)
+      -- vim.lsp.config("ltex", {
       --   settings = {
       --     ltex = {
       --       language = "en-US",
