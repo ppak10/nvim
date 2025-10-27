@@ -1,8 +1,5 @@
 -- Keybinding: <leader>td toggles light/dark
 
--- vim.cmd.colorscheme("cyberdream")
--- vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
-
 -- Simple toggle between day and night
 vim.cmd[[colorscheme tokyonight-storm]]
 
@@ -41,10 +38,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic
 
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-
---nvim-tree
--- vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
--- vim.keymap.set('n', '<leader>ft', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 
 --neo-tree 
 vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle<CR>', { noremap = true, silent = true })
