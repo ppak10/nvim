@@ -1,33 +1,66 @@
+-- ============================================================================
+-- Plugin Management
+-- ============================================================================
 require("config.lazy")
 require("config.autocmds")
 require("keymaps")
 
-vim.o.expandtab = true
-vim.o.shiftwidth = 2
-vim.o.tabstop = 2
+-- ============================================================================
+-- Core Settings
+-- ============================================================================
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.autoread = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.colorcolumn = "80"
+vim.opt.termguicolors = true
 
--- disable netrw at the very start of your init.lua
+-- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- optionally enable 24-bit colour
--- vim.opt.termguicolors = true
+-- ============================================================================
+-- Autocommands
+-- ============================================================================
 
+-- Autoreload for changes to files
+vim.api.nvim_create_autocmd(
+  { "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" },
+  { command = "if mode() != 'c' | checktime | endif", pattern = "*" }
+)
+
+-- Python-specific settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+  end,
+})
+
+-- ============================================================================
+-- Plugin Configuration
+-- ============================================================================
+
+-- Neo-tree
 require("neo-tree").setup({
   filesystem = {
     filtered_items = {
-      visible = true,         -- show hidden files by default
-      hide_dotfiles = true,   -- or false, depending on your preference
+      visible = true,
+      hide_dotfiles = true,
       hide_gitignored = true,
     },
     follow_current_file = {
-      enabled = true,         -- auto-focus file in tree
+      enabled = true,
     },
   },
   window = {
     width = 30,
     mappings = {
-      ["<space>"] = "none",  -- override default space action
+      ["<space>"] = "none",
     },
   },
   sort_case_insensitive = false,
@@ -35,6 +68,7 @@ require("neo-tree").setup({
   enable_diagnostics = true,
 })
 
+-- Telescope
 require('telescope').setup({
   defaults = {
     hidden = true,
@@ -71,23 +105,3 @@ require('telescope').setup({
     }
   }
 })
-
--- Override for python files only
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.bo.expandtab = true     -- spaces, no tabs
-    vim.bo.shiftwidth = 4       -- 4 spaces for indent
-    vim.bo.tabstop = 4          -- tab = 4 spaces wide
-  end,
-})
-
--- column bar at 80
-vim.opt.colorcolumn = "80"
-
--- linenumber
-vim.opt.number = true
-vim.opt.relativenumber = true
-
-vim.opt.termguicolors = true
-
