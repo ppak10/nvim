@@ -8,14 +8,8 @@ function ToggleTokyonightLightDark()
 
   if current == "tokyonight-day" then
     vim.cmd("colorscheme tokyonight-storm")
-    require('lualine').setup {
-      options = { theme = 'tokyonight-storm' }
-    }
   else
     vim.cmd("colorscheme tokyonight-day")
-    require('lualine').setup {
-      options = { theme = 'tokyonight-day' }
-    }
   end
 end
 
