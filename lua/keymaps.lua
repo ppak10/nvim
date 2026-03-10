@@ -45,6 +45,11 @@ vim.keymap.set("n", "<leader>tf", function()
   float_term:toggle()
 end, { desc = "Toggle floating terminal" })
 
+local generative_ai_term = Terminal:new({ direction = "float", hidden = true, float_opts = {border = "double"} })
+vim.keymap.set("n", "<leader>tg", function()
+  generative_ai_term:toggle()
+end, { desc = "Toggle generative ai terminal (you still need to run it)"})
+
 -- Horizontal terminal
 vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Horizontal terminal" })
 
