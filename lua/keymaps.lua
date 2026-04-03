@@ -1,19 +1,17 @@
--- Keybinding: <leader>td toggles light/dark
+-- Keybinding: <leader>tt toggles light/dark
 
 -- Simple toggle between day and night
-vim.cmd[[colorscheme tokyonight-day]]
+vim.o.background = "light"
 
-function ToggleTokyonightLightDark()
-  local current = vim.g.colors_name
-
-  if current == "tokyonight-day" then
-    vim.cmd("colorscheme tokyonight-storm")
+function ToggleLightDark()
+  if vim.o.background == "light" then
+    vim.o.background = "dark"
   else
-    vim.cmd("colorscheme tokyonight-day")
+    vim.o.background = "light"
   end
 end
 
-vim.keymap.set("n", "<leader>tt", ToggleTokyonightLightDark, { desc = "Toggle Light/Dark" })
+vim.keymap.set("n", "<leader>tt", ToggleLightDark, { desc = "Toggle Light/Dark" })
 
 vim.keymap.set("i", "jj", "<ESC>")
 
