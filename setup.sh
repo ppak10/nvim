@@ -124,6 +124,16 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Shell history navigation (Ctrl-P / Ctrl-N)
+# ---------------------------------------------------------------------------
+if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
+    if ! grep -q "bindkey -e" "$CONFIG_FILE" 2>/dev/null; then
+        printf '\n# Use emacs keybindings for history (ensures Ctrl-P/N work)\nbindkey -e\n' >> "$CONFIG_FILE"
+        info "Added 'bindkey -e' to $CONFIG_FILE for zsh history navigation"
+    fi
+fi
+
+# ---------------------------------------------------------------------------
 # tmux config
 # ---------------------------------------------------------------------------
 TMUX_CONF_SRC="$SCRIPT_DIR/tmux.conf"

@@ -17,6 +17,26 @@ vim.opt.relativenumber = true
 vim.opt.colorcolumn = "80"
 vim.opt.termguicolors = true
 
+-- Clipboard integration
+-- Use the system clipboard for all yanks/pastes
+vim.opt.clipboard = "unnamedplus"
+
+-- OSC 52 support for SSH clipboard synchronization
+-- (Only necessary if standard clipboard providers like xclip are failing)
+if os.getenv("SSH_TTY") then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
+
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

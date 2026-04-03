@@ -1,7 +1,7 @@
 -- Keybinding: <leader>td toggles light/dark
 
 -- Simple toggle between day and night
-vim.cmd[[colorscheme tokyonight-storm]]
+vim.cmd[[colorscheme tokyonight-day]]
 
 function ToggleTokyonightLightDark()
   local current = vim.g.colors_name
