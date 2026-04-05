@@ -1,13 +1,13 @@
--- Keybinding: <leader>tt toggles light/dark
-
--- Simple toggle between day and night
-vim.o.background = "light"
+-- Keybinding: <leader>tt toggles between oxocarbon (black) and zenbones (white)
 
 function ToggleLightDark()
-  if vim.o.background == "light" then
-    vim.o.background = "dark"
-  else
+  if vim.o.background == "dark" then
     vim.o.background = "light"
+    vim.cmd.colorscheme("zenbones")
+  else
+    vim.o.background = "dark"
+    vim.cmd.colorscheme("oxocarbon")
+    ApplyPureBlack()
   end
 end
 
